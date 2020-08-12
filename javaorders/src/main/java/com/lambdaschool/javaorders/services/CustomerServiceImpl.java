@@ -148,4 +148,14 @@ public class CustomerServiceImpl implements CustomerService {
         }
         return customerrepos.save(currentCustomer);
     }
+
+    @Transactional
+    @Override
+    public void delete(long id) {
+        if(customerrepos.findById(id).isPresent()){
+            customerrepos.deleteById(id);
+        }else{
+            throw new EntityNotFoundException("Customer " + id + " Not Found");
+        }
+    }
 }

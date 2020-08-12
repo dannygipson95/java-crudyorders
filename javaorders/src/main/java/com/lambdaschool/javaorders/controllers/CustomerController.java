@@ -66,7 +66,7 @@ public class CustomerController {
     }
     // http://localhost:2019/customers/customer/{id}
     // PATCH
-    @PatchMapping(value = "/customers/customer/{id}", consumes = "application/json")
+    @PatchMapping(value = "/customer/{id}", consumes = "application/json")
     public ResponseEntity<?> updateCustomer(@RequestBody Customer updateCustomer,
                                             @PathVariable long id){
         customerService.update(updateCustomer, id);
@@ -75,4 +75,9 @@ public class CustomerController {
 
     // http://localhost:2019/customers/customer/{id}
     // DELETE
+    @DeleteMapping(value = "/customer/{id}")
+    public ResponseEntity<?> deleteCustomerById(@PathVariable long id){
+        customerService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
